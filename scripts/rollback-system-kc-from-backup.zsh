@@ -11,7 +11,7 @@ BACKUP="${1:-}"
 TARGET_KC_DIR="${MOUNT}/System/Library/KernelCollections"
 
 if [[ "${EUID}" -ne 0 ]]; then
-  exec sudo -S /bin/zsh "$0" "$@"
+  exec sudo -S env SYSTEM_VOLUME="${SYSTEM_VOLUME:-}" /bin/zsh "$0" "$@"
 fi
 
 if [[ -z "$BACKUP" || ! -d "$BACKUP/KernelCollections.before" ]]; then

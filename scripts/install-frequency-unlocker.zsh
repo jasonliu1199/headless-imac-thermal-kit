@@ -3,6 +3,7 @@ set -euo pipefail
 
 SCRIPT_DIR="${0:A:h}"
 ROOT_DIR="${SCRIPT_DIR:h}"
+source "${SCRIPT_DIR}/support.zsh"
 KEXT_NAME="FrequencyUnlocker.kext"
 SRC="${ROOT_DIR}/kext/FrequencyUnlocker/build/Release/${KEXT_NAME}"
 DST="/Library/Extensions/${KEXT_NAME}"
@@ -11,8 +12,10 @@ BOOT_KC="/System/Library/KernelCollections/BootKernelExtensions.kc"
 SYSTEM_KC="/System/Library/KernelCollections/SystemKernelExtensions.kc"
 
 if [[ "${EUID}" -ne 0 ]]; then
-  exec sudo -S /bin/zsh "$0" "$@"
+  exec sudo -S env ALLOW_UNTESTED_MODEL="${ALLOW_UNTESTED_MODEL:-}" /bin/zsh "$0" "$@"
 fi
+
+require_tested_host "FrequencyUnlocker installer"
 
 if [[ ! -d "${SRC}" ]]; then
   print "Building ${KEXT_NAME} ..."

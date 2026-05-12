@@ -6,6 +6,7 @@ export LC_ALL=C
 
 SCRIPT_DIR="${0:A:h}"
 ROOT_DIR="${SCRIPT_DIR:h}"
+source "${SCRIPT_DIR}/support.zsh"
 MOUNT="${ROOT_DIR}/mnt-system"
 SYSTEM_VOLUME="${SYSTEM_VOLUME:-disk1s1}"
 KDK="${KDK:-}"
@@ -26,8 +27,10 @@ SUCCESS=0
 ROLLBACK_READY=0
 
 if [[ "${EUID}" -ne 0 ]]; then
-  exec sudo -S /bin/zsh "$0" "$@"
+  exec sudo -S env ALLOW_UNTESTED_MODEL="${ALLOW_UNTESTED_MODEL:-}" KDK="${KDK:-}" SYSTEM_VOLUME="${SYSTEM_VOLUME:-}" /bin/zsh "$0" "$@"
 fi
+
+require_tested_host "sealed-system platform-plugin patch"
 
 if [[ -z "${KDK}" ]]; then
   KDK="$(/bin/ls -d /Library/Developer/KDKs/*.kdk 2>/dev/null | /usr/bin/tail -1 || true)"

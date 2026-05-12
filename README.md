@@ -30,6 +30,31 @@ Known requirements from the tested machine:
   auxiliary kext loading
 - Command Line Tools for building the kext and `smcfanctl`
 
+## Compatibility
+
+This method is not universal across all Mac models.
+
+Confirmed only on:
+
+- Intel iMac18,3
+- macOS 13.7.8 / build 22H730
+
+Component portability:
+
+- The platform-plugin patch is the most model and macOS-build specific part. It
+  assumes the Ventura `IOPlatformPluginFamily.kext` plugin layout and changes
+  `ACPI_SMC_PlatformPlugin`, `X86PlatformPlugin`, and `X86PlatformShim` matching.
+- `FrequencyUnlocker` is Intel-only. It writes Intel MSRs such as BD-PROCHOT,
+  HWP, and PERF_CTL, so it is not usable on Apple Silicon and may need review for
+  other Intel CPU generations.
+- `smcfanctl` requires the legacy `AppleSMC` service. The default quiet curve
+  assumes a single shared fan and the CPU/GPU temperature keys observed on the
+  tested iMac.
+
+High-risk installers refuse to run on models other than `iMac18,3` unless you
+explicitly set `ALLOW_UNTESTED_MODEL=1`. Treat that override as a development
+escape hatch, not a compatibility promise.
+
 ## Install Order
 
 Build and install the frequency kext:

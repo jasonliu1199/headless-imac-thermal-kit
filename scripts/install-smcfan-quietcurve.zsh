@@ -3,13 +3,16 @@ set -euo pipefail
 
 SCRIPT_DIR="${0:A:h}"
 ROOT_DIR="${SCRIPT_DIR:h}"
+source "${SCRIPT_DIR}/support.zsh"
 LABEL="local.smcfan.quietcurve"
 PLIST_SRC="${ROOT_DIR}/launchd/${LABEL}.plist"
 PLIST_DST="/Library/LaunchDaemons/${LABEL}.plist"
 
 if [[ "${EUID}" -ne 0 ]]; then
-  exec sudo -S /bin/zsh "$0" "$@"
+  exec sudo -S env ALLOW_UNTESTED_MODEL="${ALLOW_UNTESTED_MODEL:-}" /bin/zsh "$0" "$@"
 fi
+
+require_tested_host "quiet fan daemon installer"
 
 make -C "${ROOT_DIR}/fan"
 install -d /usr/local/sbin
