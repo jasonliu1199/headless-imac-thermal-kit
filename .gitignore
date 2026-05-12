@@ -5,6 +5,7 @@
 build/
 backups/
 mnt-system/
+profiles/local.conf
 *.o
 smcfanctl
 *.kext/Contents/_CodeSignature/

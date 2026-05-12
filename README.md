@@ -57,6 +57,26 @@ escape hatch, not a compatibility promise.
 
 ## Install Order
 
+For the guided path:
+
+```zsh
+./scripts/deploy.zsh doctor
+./scripts/deploy.zsh print-profile
+./scripts/deploy.zsh deploy
+```
+
+For an unlisted Intel Mac, generate a local profile first:
+
+```zsh
+./scripts/deploy.zsh write-profile
+```
+
+Then edit `profiles/local.conf`. Keep the platform patch and frequency kext
+disabled until you have audited them for that model. If you intentionally run on
+an untested model, use `ALLOW_UNTESTED_MODEL=1 ./scripts/deploy.zsh deploy`.
+
+Manual install order:
+
 Build and install the frequency kext:
 
 ```zsh
