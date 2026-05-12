@@ -1,0 +1,10 @@
+.DS_Store
+*.log
+*.kc
+*.kc.elides
+build/
+backups/
+mnt-system/
+*.o
+smcfanctl
+*.kext/Contents/_CodeSignature/

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>CFBundleDevelopmentRegion</key>
+  <string>en</string>
+  <key>CFBundleExecutable</key>
+  <string>FrequencyUnlocker</string>
+  <key>CFBundleIdentifier</key>
+  <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+  <key>CFBundleInfoDictionaryVersion</key>
+  <string>6.0</string>
+  <key>CFBundleName</key>
+  <string>FrequencyUnlocker</string>
+  <key>CFBundlePackageType</key>
+  <string>KEXT</string>
+  <key>CFBundleShortVersionString</key>
+  <string>$(MARKETING_VERSION)</string>
+  <key>CFBundleVersion</key>
+  <string>$(MARKETING_VERSION)</string>
+  <key>IOKitPersonalities</key>
+  <dict>
+    <key>FrequencyUnlocker</key>
+    <dict>
+      <key>CFBundleIdentifier</key>
+      <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+      <key>IOClass</key>
+      <string>FrequencyUnlocker</string>
+      <key>IOMatchCategory</key>
+      <string>FrequencyUnlocker</string>
+      <key>IOProbeScore</key>
+      <integer>9999</integer>
+      <key>IOProviderClass</key>
+      <string>IOResources</string>
+      <key>IOResourceMatch</key>
+      <string>IOKit</string>
+    </dict>
+  </dict>
+  <key>LSMinimumSystemVersion</key>
+  <string>$(MACOSX_DEPLOYMENT_TARGET)</string>
+  <key>OSBundleCompatibleVersion</key>
+  <string>2026.05.11</string>
+  <key>OSBundleEnableKextLogging</key>
+  <integer>1</integer>
+  <key>OSBundleLibraries</key>
+  <dict>
+    <key>com.apple.kpi.iokit</key>
+    <string>11.0</string>
+    <key>com.apple.kpi.libkern</key>
+    <string>11.0</string>
+    <key>com.apple.kpi.mach</key>
+    <string>11.0</string>
+    <key>com.apple.kpi.unsupported</key>
+    <string>11.0</string>
+  </dict>
+  <key>OSBundleRequired</key>
+  <string>Root</string>
+</dict>
+</plist>
